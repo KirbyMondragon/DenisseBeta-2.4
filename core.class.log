@@ -1,0 +1,80 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '5214523433513@s.whatsapp.net',
+    fromMe: false,
+    id: 'BE6652D0FFA896B8D1EFF929D95E7733',
+    participant: undefined
+  },
+  messageTimestamp: 1692254064,
+  pushName: 'Arturo Mondragon',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '5214523433513'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5214523433513@s.whatsapp.net',
+    fromMe: false,
+    id: '15FDEC8072CDBEF739BD8EF407B45634',
+    participant: undefined
+  },
+  messageTimestamp: 1692254068,
+  pushName: 'Arturo Mondragon',
+  broadcast: false,
+  message: Message {
+    conversation: '4',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '4',
+  from: '5214523433513'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5214523433513@s.whatsapp.net',
+    fromMe: false,
+    id: 'A3F9379922CA115D2D79E799D73F3FEC',
+    participant: undefined
+  },
+  messageTimestamp: 1692254076,
+  pushName: 'Arturo Mondragon',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '5214523433513'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5214523433513@s.whatsapp.net',
+    fromMe: false,
+    id: 'C044820E64363933B66CE58DFEE50FE9',
+    participant: undefined
+  },
+  messageTimestamp: 1692254080,
+  pushName: 'Arturo Mondragon',
+  broadcast: false,
+  message: Message {
+    conversation: '1',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '1',
+  from: '5214523433513'
+}
