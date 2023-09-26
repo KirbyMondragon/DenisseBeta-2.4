@@ -16,7 +16,7 @@ const flowAdmision = addKeyword(['1', 'uno',])
   .addAnswer('📝 Requisitos de admisión: 🌐')
   .addAnswer([
     'En el siguiente enlace podras descargar la convocatoria de admisión: 📄',
-'https://upsrj.edu.mx/wp-content/uploads/2023/07/Convocatoria-de-admision-mejorado.pdf 📎'
+'https://upsrj.edu.mx/admision/ 📎'
 
 ], null, null, [flowSecundario]);
 
