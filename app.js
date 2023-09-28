@@ -2,195 +2,258 @@ const { createBot, createProvider, createFlow, addKeyword } = require('@bot-what
 const QRPortalWeb = require('@bot-whatsapp/portal');
 const BaileysProvider = require('@bot-whatsapp/provider/baileys');
 const MockAdapter = require('@bot-whatsapp/database/mock');
+//Flujo regresar
 
-// Definir flujo secundario
-const flowSecundario = addKeyword([]).addAnswer([
-    '👋 ¡Gracias por hablar conmigo! 😊🌟',
-    '',
-    '¡Recuerda! para volver al menú principal, simplemente escribe "Hola".👋'
-    ]);
+const flowRegresoMenuPrincipal =  addKeyword(["1","uno"]).addAnswer([
+    "Enviame un 'si' para regresar✅💬",
+]);
 
 
-//inica flujo de administracion
-const flowAdmision = addKeyword(['1', 'uno',])
-  .addAnswer('📝 Requisitos de admisión: 🌐')
-  .addAnswer([
-    'En el siguiente enlace podras descargar la convocatoria de admisión: 📄',
-'https://upsrj.edu.mx/admision/ 📎'
+//Flujos para salir 
 
-], null, null, [flowSecundario]);
+const flowSalir8 = addKeyword(["3","tres","Three"]).addAnswer([
+    "¡Hasta luego! 😊👋"
+]);
+const flowSalir5 = addKeyword(["5","tres","Three"]).addAnswer([
+    "¡Hasta luego! 😊👋"
+]);
+const flowSalir4 = addKeyword(["4","cuatro"]).addAnswer([
+    "¡Hasta luego! 😊👋"
+]);
+const flowSalir3 = addKeyword(["3","tres","Three"]).addAnswer([
+    "¡Hasta luego! 😊👋"
+]);
+const flowSalir2 = addKeyword(["2","dos"]).addAnswer([
+    "¡Hasta luego! 😊👋"
+]);
+const flowSalir1= addKeyword(["1","uno"]).addAnswer([
+    "¡Hasta luego! 😊👋"
+]);
+//Flujos para salir  
+
+const FlowMaterias = addKeyword(["2","dos","three"]).addAnswer([
+    "Estamos Trabajando en este apartado",
+])
 
 
-const flowRobotica = addKeyword(['1', 'uno']).addAnswer(
-    '📝 Ingeniería en Robótica Computacional :🌐')
-.addAnswer(['Presiona el siguiente link para acceder a la informacion  : 📄',
-'https://upsrj.edu.mx/ingenieria-en-robotica-computacional/ 📎'
-], null, null, [flowSecundario]);
+const FlowAdmision = addKeyword(["3","tres"]).addAnswer([
+    "Estamos Trabajando en este apartado",
+])
 
-const flowTerapia = addKeyword(['2', 'dos']).addAnswer(
-    'Licenciatura en Terapia Física:🌐')
-.addAnswer(['Presiona el siguiente link para acceder a la informacion  : 📄',
-'https://upsrj.edu.mx/terapia-fisica-2/ 📎'
-], null, null, [flowSecundario]);
 
-const flowSoftware = addKeyword(['3', 'tres']).addAnswer(
-    'Ingeniería en Software: 📄🌐')
-.addAnswer(['Presiona el siguiente link para acceder a la informacion : 📄',
-'https://upsrj.edu.mx/ingenieria-en-software/ 📎',
-], null, null, [flowSecundario]);
+const FlowAnimacion = addKeyword(["6","seis","six"]).addAnswer([
+    "Aquí podrás encontrar toda la información mas actualizada sobre Animación 🎥🎨🌐 : https://upsrj.edu.mx/animacion-y-efectos-visuales/",
 
-const flowMetrologia = addKeyword(['4', 'cuatro'])
-.addAnswer(
-    'Ingeniería en Metrología Industrial: 📄🌐')
-.addAnswer([' Presiona el siguiente link para acceder a la informacion ',
-'https://upsrj.edu.mx/metrologia-industrial/ 📎'
-], null, null, [flowSecundario]);
+    "1️⃣ Menú principal🏠 ",
+    "2️⃣ Mapa curricular(Materias)📚",
+    "3️⃣ Admisión 🏆",
+    "4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[flowRegresoMenuPrincipal ,FlowAdmision,FlowMaterias, flowSalir4])
 
-const flowAutomotriz = addKeyword(['5', 'CInco'])
-.addAnswer(
-    ' Ingeniería en Sistemas Automotrices:🌐')
-.addAnswer(['Presiona el siguiente link para acceder a la informacion📄',
-'https://upsrj.edu.mx/sistemas-automotrices/ 📎'
-], null, null, [flowSecundario]);
 
-const flowAnimacion = addKeyword(['6', 'seis'])
-.addAnswer(
-    'Ingeniería en Animación y Efectos Visuales: 📄🌐')
-.addAnswer(['Presiona el siguiente link para acceder a la informacion📄',
-'https://upsrj.edu.mx/animacion-y-efectos-visuales/ 📎'
-], null, null, [flowSecundario]);
+const FlowAutomotriz = addKeyword(["5","cinco","five"]).addAnswer([
+    "Aquí podrás encontrar toda la información mas actualizada sobre Automotriz🚗🔧🌐 : https://upsrj.edu.mx/sistemas-automotrices/",
 
-//Licenciaturas
-const flowpregrados = addKeyword(['1', 'uno', 'licenciaturas' ]).addAnswer([
-  '💻 pregrados disponibles:',
-  '',
-'1️⃣ Ingeniería en Robótica Computacional 🤖💻',
-'2️⃣ Licenciatura en Terapia Física 💪👩‍⚕️',
-'3️⃣ Ingeniería en Software 💻👨‍💻',
-'4️⃣ Ingeniería en Metrología Industrial 🔧📏🏭',
-'5️⃣ Ingeniería en Sistemas Automotrices 🚗🔧',
-'6️⃣ Ingeniería en Animación y Efectos Visuales 🎬🎨🚀',
-], null, null, [flowRobotica,flowTerapia,flowSoftware,flowMetrologia,flowAutomotriz,flowAnimacion]);
+    "1️⃣ Menú principal🏠 ",
+    "2️⃣ Mapa curricular(Materias)📚",
+    "3️⃣ Admisión 🏆",
+    "4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[FlowAdmision,FlowMaterias,flowRegresoMenuPrincipal , flowSalir4])
 
-const flowMasCalidad = addKeyword(['2', 'dos']).addAnswer(
-    'Puedes ver los detalles de la Maestria desde el siguiente link 🌐')
-.addAnswer(['Enlace Maestría en Calidad y Metrología Industrial: 📄',
-'https://upsrj.edu.mx/maestria-en-ensenanza-de-las-ciencias-2/ 📎'
-    
-], null, null, [flowSecundario]);
+const FlowMetro = addKeyword(["4","cuatro","four"]).addAnswer([
+    "Aquí podrás encontrar toda la información mas actualizada sobre Ingeniería en Meteorología Industrial 🔧📏🏭 : https://upsrj.edu.mx/metrologia-industrial/",
 
-const flowMasEnseñanza = addKeyword(['1', 'uno']).addAnswer(
-    'Puedes ver los detalles de la Maestria desde el siguiente link 🌐')
-.addAnswer(['Enlace Maestría en Enseñanza de las Ciencias: 📄',
-'https://upsrj.edu.mx/maestria-en-ensenanza-de-las-ciencias/📎'
-    
-], null, null, [flowSecundario]);
-//maestrias
-const flowMaestrias = addKeyword(['2', 'dos','maestrias']).addAnswer([
-  '🔧📏 Posgrados disponibles :',
-  '',
-'1️⃣ Maestría en Enseñanza de las Ciencias 🎓🔬',
+    "1️⃣ Menú principal🏠 ",
+    "2️⃣ Mapa curricular(Materias)📚",
+    "3️⃣ Admisión 🏆",
+    "4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[FlowAdmision,FlowMaterias,flowRegresoMenuPrincipal , flowSalir4])
+
+
+const FlowSoftware = addKeyword(["3","tres","three"]).addAnswer([
+    "Aquí podrás encontrar toda la información mas actualizada sobre Ingeniería en Software💻👨‍💻🌐 : https://upsrj.edu.mx/ingenieria-en-software/",
+
+    "1️⃣ Menú principal🏠 ",
+    "2️⃣ Mapa curricular(Materias)📚",
+    "3️⃣ Admisión 🏆",
+    "4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[FlowAdmision,FlowMaterias,flowRegresoMenuPrincipal , flowSalir4])
+
+const FlowTerapiaFisica = addKeyword(["2","dos","two"]).addAnswer([
+    "Aquí podrás encontrar toda la información mas actualizada sobre Terapia Física 💪👩‍⚕️: https://upsrj.edu.mx/terapia-fisica-2/",
+
+    "1️⃣ Menú principal🏠 ",
+    "2️⃣ Mapa curricular(Materias)📚",
+    "3️⃣ Admisión 🏆",
+    "4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[FlowAdmision,FlowMaterias,flowRegresoMenuPrincipal ,flowSalir4])
+
+
+const FlowRobotica = addKeyword(["7","siete"]).addAnswer([
+    "Aquí podrás encontrar toda la información mas actualizada sobre Robótica Computacional 🤖💻: https://upsrj.edu.mx/ingenieria-en-robotica-computacional/",
+
+"1️⃣ Menú principal🏠 ",
+"2️⃣ Mapa curricular(Materias)📚",
+"3️⃣ Admisión 🏆",
+"4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[FlowAdmision,FlowMaterias,flowRegresoMenuPrincipal , flowSalir4])
+
+
+const FlowPregrados = addKeyword(["3","tres"]).addAnswer([
+    'Menú de Pregrados: 🎓📚',
+
+    '1️⃣ Menú principal🏠 ',
+    '2️⃣ Licenciatura en Terapia Física 💪👩‍⚕️',
+    '3️⃣ Ingeniería en Software 💻👨‍💻',
+    '4️⃣ Ingeniería en Metrología Industrial 🔧📏🏭',
+    '5️⃣ Ingeniería en Sistemas Automotrices 🚗🔧',
+    '6️⃣ Ingeniería en Animación y Efectos Visuales 🎬🎨🚀',
+    '7️⃣ Ingeniería en Robótica Computacional 🤖💻',
+    '8️⃣  Salir ❌',
+
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4','5','6','7','8'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[FlowRobotica,FlowTerapiaFisica,FlowSoftware,FlowMetro,FlowAutomotriz, FlowAnimacion,flowRegresoMenuPrincipal , flowSalir8])
+
+
+const FlowCalidadMetro = addKeyword(["2","dos","two"]).addAnswer([
+    "Próximamente...",
+"Maestría  en Calidad y Metrología Industrial 🎓🔬 :",
+"https://upsrj.edu.mx/maestria-en-ensenanza-de-las-ciencias-2/",
+'1️⃣ Menú principal🏠',
+'2️⃣ Salir ❌',
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[flowRegresoMenuPrincipal,flowSalir2])
+
+const FlowEnseñanzaCiencia = addKeyword(["1","uno","one"]).addAnswer([
+    "Próximamente...",
+"Maestría  en Calidad y Metrología Industrial 🎓🔬 :",
+"https://upsrj.edu.mx/maestria-en-ensenanza-de-las-ciencias-2/",
+    '1️⃣ Menú principal🏠',
+    '2️⃣ Salir ❌',
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+},[flowRegresoMenuPrincipal,flowSalir2])
+
+
+
+const FlowMaestrias = addKeyword(["2","dos","two"]).addAnswer([
+    ' 🎓📚 Menú de Maestrías:',
+
+'1️⃣ Menú principal🏠 ',
 '2️⃣ Maestría en Calidad y Metrología Industrial 🎓🔧📏',
-], null, null, [flowMasEnseñanza, flowMasCalidad]);
-//inicia el flujo de carreas
-const flowProgramasAcademicos = addKeyword(['2', 'dos']).addAnswer([
-  '🙌 Programas Académicos:',
-    '',
-    '1️⃣ ingenierias y licenciatura',
+"3️⃣ Maestría en Enseñanza de las Ciencias 🎓🔬",
+"4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+}, [FlowEnseñanzaCiencia, FlowCalidadMetro,flowRegresoMenuPrincipal, flowSalir4])
+
+
+
+//Oferta educativa
+const FlowOfertaEducativa = addKeyword(["2","dos","two"]).addAnswer([
+    '🔍📋Oferta educativa :',
+
+    '1️⃣ Menú principal🏠',
     '2️⃣ Maestrías 🎓📚',
+    "3️⃣ Ingenierías y Licenciatura 🔧 ",
+    "4️⃣ Salir ❌",
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+}, [FlowPregrados, FlowMaestrias,flowRegresoMenuPrincipal,flowSalir4]);
+
+
+const flowMenuPrincipal= addKeyword(['si', 'yes']).addAnswer([
+    " 👩🏽‍💻 Menu Principal🤔", 
+     
+     '1️⃣ Servicios escolares 📚',
+      '2️⃣ Oferta educativa 📋',
+     '3️⃣ Servicios Coyotes 🐺',
+      '4️⃣ Clínica de fisioterapia 🏥',
+      '5️⃣ Salir ❌'
+ ],
+ {capture: true},
+ async(ctx, {fallBack}) => {
+     if(!['1', '2','3', '4','5'].includes(ctx.body) ){
+         return fallBack('Seleccione una opcion del menu✅💬')
+     }
+     console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+ }, [flowSalir5, FlowOfertaEducativa, flowRegresoMenuPrincipal]);
+
+const flowPrincipal = addKeyword(['hola', 'hello']).addAnswer([
+   " 👩🏽‍💻 ¡Hola! Soy Denisse, la asistente virtual de la UPSRJ. ",
+    "¿En qué puedo ayudarte hoy? 🤔", 
     
-], null, null, [flowpregrados, flowMaestrias]);
-
-
-const flowBecaExcelencia= addKeyword(['1', 'uno',]).addAnswer([
-    'Beca Excelencia 🎗️',
-    '',
-    'Se otorga para distinguir a los alumnos que hayan alcanzado los mejores promedios de calificaciones en el cuatrimestre inmediato anterior. Esta beca comprende la condonación hasta del 100% del monto correspondiente al pago de la cuota de reinscripción. Superior o igual a 9.5 deberá ser el promedio inmediato anterior.🦉',
-    '',
-    'Puedes hacer tu proceso de solicitud desde el siguiente link 🌐',
-    'https://upsrj.edu.mx/wp-content/uploads/2023/07/CONVOCATORIA-BECAS-INSTITUCIONALES-SEP-DIC-2023.pdf',
-    
-], null, null, [flowSecundario]);
-const flowBecaAcademica= addKeyword(['2', 'dos',]).addAnswer([
-    'Beca Academica 📚',
-    '',
-    'Esta beca comprende la condonación hasta de un 80% del monto correspondiente al pago de la cuota de reinscripción. Se otorga a los alumnos que hayan conservado un promedio comprendido en el intervalo de 8.5 a 9.4',
-    '',
-    'Puedes hacer tu proceso de solicitud desde el siguiente link 🌐',
-    'https://upsrj.edu.mx/wp-content/uploads/2023/07/CONVOCATORIA-BECAS-INSTITUCIONALES-SEP-DIC-2023.pdf',
-
-    
-    
-], null, null, [flowSecundario]);
-const flowBecaExtension= addKeyword(['3', 'tres',]).addAnswer([
-    'Beca Extension 🏋️‍♂️🎭',
-    '',
-    'Se otorga a los alumnos regulares que tengan una participación deportiva y/o cultural relevante en equipo o grupos representativos de la Universidad, o estén inscritos en algún programa de Cultura Verde (sustentabilidad) participando en eventos locales, estatales, regionales, nacionales o internacionales. Esta beca comprende la condonación hasta el 90% del monto correspondiente al pago de la cuota de reinscripción. Se otorga a los alumnos que hayan manteniendo un promedio mínimo de 8.0.',
-    '',
-    'Puedes hacer tu proceso de solicitud desde el siguiente link 🌐', 
-    'https://upsrj.edu.mx/wp-content/uploads/2023/07/CONVOCATORIA-BECAS-INSTITUCIONALES-SEP-DIC-2023.pdf',
-
-    
-    
-], null, null, [flowSecundario]);
-
-const flowBecaApoyoEconómico= addKeyword(['4', 'cuatro',]).addAnswer([
-    'Beca Apoyo Economico 💰',
-    '',
-    'Esta beca comprende la condonación de hasta un 70% del monto correspondiente al pago de la cuota de reinscripción. Se otorga a los alumnos que demuestren no contar con recursos económicos suficientes para continuar sus estudios y conservan un promedio mínimo de 8.0.',
-    '',
-    'Puedes hacer tu proceso de solicitud desde el siguiente link 🌐',
-    'https://upsrj.edu.mx/wp-content/uploads/2023/07/CONVOCATORIA-BECAS-INSTITUCIONALES-SEP-DIC-2023.pdf',
-
-    
-    
-], null, null, [flowSecundario]);
-const flowBecaEspecial= addKeyword(['5', 'cinco',]).addAnswer([
-    'Beca Especial 🌟',
-    '',
-    'Esta beca comprende la condonación de un porcentaje de la cuota de reinscripción definido. Se otorga a los alumnos regulares bajo las siguientes características:',
-    '',
-    'Que acrediten una condición de vulnerabilidad (madres solteras, indígenas u otras).',
-    'Alumnos de la Licenciatura en Terapia Física que realizan su periodo de Servicio Social en modalidad CIFRHS o en otra institución, en este caso los alumnos estarán exentos de realizar servicio becario por el Consejo de Calidad de la UPSRJ.',
-    '',
-    'Puedes hacer tu proceso de solicitud desde el siguiente link 🌐',
-    'https://upsrj.edu.mx/wp-content/uploads/2023/07/CONVOCATORIA-BECAS-INSTITUCIONALES-SEP-DIC-2023.pdf',
-    
-], null, null, [flowSecundario]);
-
-const flowBecasEstudiantes = addKeyword(['3', 'tres']).addAnswer([
-    '🏫 ¡Becas disponibles en la Universidad Politécnica de Santa Rosa! 🎓',
-    '',
-    'Modalidades de beca:',
-
-    '1️⃣ Beca Excelencia 🏆',
-    '2️⃣ Beca Académica 📚',
-    '3️⃣ Beca Extensión 🏋️‍♂️🎭',
-    '4️⃣ Beca Apoyo Económico 💰',
-    '5️⃣ Beca Especial 🌟',
-    '',
-    
-    '¡Estamos aquí para ayudarte en tu camino educativo! 🌟',
-], null, null, [flowBecaExcelencia,flowBecaAcademica, flowBecaEspecial,flowBecaApoyoEconómico,flowBecaExtension]);
-
-// Definir flujo de Denisse
-const flowDenisse = addKeyword(['2008mt']).addAnswer([
-    'Te quiero mucho, este proyecto es para ti.',
-    'Me sacas canas verdes, pero siempre te voy a querer',
-    'Porque eres mi mayor orgullo.',
-], null, null, [flowSecundario]);
-
-// Definir flujo de la universidad
-const flowPrincipal = addKeyword(['hola', 'hello', 'hi', 'ole', 'alo']).addAnswer([
-  '👩🏽‍💻📚 ¡Hola! Soy Denisse ,¡Bienvenido/a la Universidad Politécnica de Santa Rosa Jauregui (UPSRJ)!',
-  '',
-  '¿En qué puedo ayudarte hoy? 😊',
-  '1️⃣ Admisión 👉🎓',
-  '2️⃣ Programas Académicos 📘',
-  '3️⃣ Becas a estudiantes 🎓💼',
-  '4️⃣ Por ahora no necesito nada ❌',
-
-], null, null, [flowAdmision, flowProgramasAcademicos, flowBecasEstudiantes, flowDenisse , flowSecundario]);
+    '1️⃣ Servicios escolares 📚',
+     '2️⃣ Oferta educativa 📋',
+    '3️⃣ Servicios Coyotes 🐺',
+     '4️⃣ Clínica de fisioterapia 🏥',
+     '5️⃣ Salir ❌'
+],
+{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3', '4','5'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+}, [flowSalir5, FlowOfertaEducativa]);
 
 // Resto del código...
 
@@ -198,7 +261,7 @@ const flowPrincipal = addKeyword(['hola', 'hello', 'hi', 'ole', 'alo']).addAnswe
 // Función principal
 const main = async () => {
     const adapterDB = new MockAdapter();
-    const adapterFlow = createFlow([flowPrincipal]);
+    const adapterFlow = createFlow([flowPrincipal, flowMenuPrincipal]);
     const adapterProvider = createProvider(BaileysProvider);
 
     createBot({

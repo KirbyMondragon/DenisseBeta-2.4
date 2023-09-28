@@ -1,80 +1,100 @@
 [handleMsg]:  {
   key: {
-    remoteJid: '5214523433513@s.whatsapp.net',
+    remoteJid: '5214427062479@s.whatsapp.net',
     fromMe: false,
-    id: 'BE6652D0FFA896B8D1EFF929D95E7733',
+    id: 'C96A8BFB3F0FEF28F5',
     participant: undefined
   },
-  messageTimestamp: 1692254064,
-  pushName: 'Arturo Mondragon',
+  messageTimestamp: 1695939834,
+  pushName: 'Emilio Chávez',
   broadcast: false,
   message: Message {
-    conversation: 'Hola',
+    extendedTextMessage: ExtendedTextMessage { text: 'Hola', contextInfo: [ContextInfo] },
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
   body: 'Hola',
-  from: '5214523433513'
+  from: '5214427062479'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '5214523433513@s.whatsapp.net',
+    remoteJid: '5214427062479@s.whatsapp.net',
     fromMe: false,
-    id: '15FDEC8072CDBEF739BD8EF407B45634',
+    id: '11667A82011A7C78D2',
     participant: undefined
   },
-  messageTimestamp: 1692254068,
-  pushName: 'Arturo Mondragon',
+  messageTimestamp: 1695939846,
+  pushName: 'Emilio Chávez',
   broadcast: false,
   message: Message {
-    conversation: '4',
+    extendedTextMessage: ExtendedTextMessage { text: '2', contextInfo: [ContextInfo] },
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: '4',
-  from: '5214523433513'
+  body: '2',
+  from: '5214427062479'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '5214523433513@s.whatsapp.net',
+    remoteJid: '5214427062479@s.whatsapp.net',
     fromMe: false,
-    id: 'A3F9379922CA115D2D79E799D73F3FEC',
+    id: '7AC219EB6F1444A07D',
     participant: undefined
   },
-  messageTimestamp: 1692254076,
-  pushName: 'Arturo Mondragon',
+  messageTimestamp: 1695939857,
+  pushName: 'Emilio Chávez',
   broadcast: false,
   message: Message {
-    conversation: 'Hola',
+    extendedTextMessage: ExtendedTextMessage { text: '3', contextInfo: [ContextInfo] },
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
-  body: 'Hola',
-  from: '5214523433513'
+  body: '3',
+  from: '5214427062479'
 }
 [handleMsg]:  {
   key: {
-    remoteJid: '5214523433513@s.whatsapp.net',
+    remoteJid: '5214427062479@s.whatsapp.net',
     fromMe: false,
-    id: 'C044820E64363933B66CE58DFEE50FE9',
+    id: 'E3BBDCEC401958019E',
     participant: undefined
   },
-  messageTimestamp: 1692254080,
-  pushName: 'Arturo Mondragon',
+  messageTimestamp: 1695939860,
+  pushName: 'Emilio Chávez',
   broadcast: false,
   message: Message {
-    conversation: '1',
+    extendedTextMessage: ExtendedTextMessage { text: '1', contextInfo: [ContextInfo] },
     messageContextInfo: MessageContextInfo {
       deviceListMetadata: [DeviceListMetadata],
       deviceListMetadataVersion: 2
     }
   },
   body: '1',
-  from: '5214523433513'
+  from: '5214427062479'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5214427062479@s.whatsapp.net',
+    fromMe: false,
+    id: '6AC1B8FD1798ACCFDE',
+    participant: undefined
+  },
+  messageTimestamp: 1695939864,
+  pushName: 'Emilio Chávez',
+  broadcast: false,
+  message: Message {
+    extendedTextMessage: ExtendedTextMessage { text: 'si', contextInfo: [ContextInfo] },
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'si',
+  from: '5214427062479'
 }
