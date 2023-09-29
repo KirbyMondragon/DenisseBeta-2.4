@@ -807,6 +807,106 @@ async(ctx, {fallBack}) => {
 
 
 
+//Aqui termina servicios coyotes 
+
+const flowCatalogo = addKeyword(["2","dos"]).addAnswer([
+    "2️⃣ 📖 Catálogo de Libros",
+    "Aquí podrías buscar tus libros,si nos apoya la universidad...📚🏛",
+    "1️⃣ Menú principal🏠",
+    "2️⃣ Salir ❌",
+  ],{capture: true},
+  async(ctx, {fallBack}) => {
+      if(!['1', '2'].includes(ctx.body) ){
+          return fallBack('Seleccione una opcion del menu✅💬')
+      }
+      
+  },[flowRegresoMenuPrincipal, flowSalir2]);
+  
+  const flowHorarioyUbicacion = addKeyword(["1","uno"]).addAnswer([
+      "📚 Horario y Ubicación: ",
+      '',
+      '🏛️ La biblioteca está ubicada en el Learning Center',
+      '🕐 Nuestros horarios de atención son de lunes a viernes de 8:00 a 13:00 horas.🗓️ ',
+      "1️⃣ Menú principal🏠",
+      "2️⃣ Salir ❌",
+  ],{capture: true},
+  async(ctx, {fallBack}) => {
+      if(!['1', '2'].includes(ctx.body) ){
+          return fallBack('Seleccione una opcion del menu✅💬')
+      }
+  },
+  [flowRegresoMenuPrincipal, flowSalir2]);
+  
+  const flowBibliotecafisica = addKeyword(["2", "dos"]).addAnswer ([
+  "1️⃣ 📚 Horario y Ubicación",
+  "2️⃣ 📖 Catálogo de Libros",
+  "3️⃣ 🚪 Salir",
+  ],{capture: true},
+  async(ctx, {fallBack}) => {
+      if(!['1', '2','3', '4'].includes(ctx.body) ){
+          return fallBack('Seleccione una opcion del menu✅💬')
+      }
+      console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+  },
+  [flowHorarioyUbicacion,flowCatalogo, flowSalir3]);
+  
+  const flowBibliotecaDigital = addKeyword(["3","tres"]).addAnswer([
+    "Biblioteca Virtual🏛️📖🌐",
+    "Próximamente...",
+    '1️⃣ Menú principal🏠',
+    '2️⃣ Salir ❌',
+    
+  ],{capture: true},
+  async(ctx, {fallBack}) => {
+      if(!['1', '2'].includes(ctx.body) ){
+          return fallBack('Seleccione una opcion del menu✅💬')
+      }
+  },
+  [flowRegresoMenuPrincipal, flowSalir2]);
+  
+  const flowBiblioteca = addKeyword(["2","biblioteca","dos"]).addAnswer ([
+   'Menu Biblioteca 📖',
+   '',
+  "1️⃣ Menu principal 📚",
+  "2️⃣ Biblioteca 📖",
+  "3️⃣ Biblioteca Virtual🏛️🌐",
+  "4️⃣ Salir 🚪"
+  ],{capture: true},
+  async(ctx, {fallBack}) => {
+      if(!['1', '2','3', '4'].includes(ctx.body) ){
+          return fallBack('Seleccione una opcion del menu✅💬')
+      }
+  },
+  [flowBibliotecaDigital,flowBibliotecafisica,flowSalir4, flowRegresoMenuPrincipal]);
+  
+  
+
+const FlowServiciosCoyotes = addKeyword(["3","tres"]).addAnswer([
+    
+    'Servicios Coyotes 🐺🏢',
+    '',
+    '1️⃣ Menu principal 📚 ',
+    '2️⃣ Biblioteca 🔍📋',
+    '3️⃣ Salir ❌',
+    //'3️⃣ Clubs Deportivos⚽',
+    //'4️⃣ Clubs Culturales  🎨🎭',
+   //'5️⃣ Duchas y casilleros para deportistas🏆',
+    //'6️⃣ Salir ❌'
+
+],{capture: true},
+async(ctx, {fallBack}) => {
+    if(!['1', '2','3'].includes(ctx.body) ){
+        return fallBack('Seleccione una opcion del menu✅💬')
+    }
+    console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
+}, [flowBiblioteca,flowRegresoMenuPrincipal,flowSalir3]);
+//Aqui inicia servicios coyotes 
+
+
+
+
+
+
 
 const flowMenuPrincipal= addKeyword(['menu', 'principal']).addAnswer([
     " 👩🏽‍💻 Menu Principal🤔", 
@@ -823,7 +923,7 @@ const flowMenuPrincipal= addKeyword(['menu', 'principal']).addAnswer([
          return fallBack('Seleccione una opcion del menu✅💬')
      }
      console.log(`El usuario ha dejado un mensaje ${ctx.body}`);
- }, [flowSalir5, FlowOfertaEducativa, flowFisio]);
+ }, [flowSalir5,FlowServiciosCoyotes,flowServiciosEscolares, FlowOfertaEducativa, flowFisio]);
 
  //USO events.welcome para que cualquier texto lo inicie pero no influye
  //en el volver.
@@ -843,7 +943,7 @@ async(ctx, {fallBack}) => {
     if(!['1', '2','3', '4','5'].includes(ctx.body) ){
         return fallBack('Seleccione una opcion del menu✅💬')
     }
-}, [flowSalir5, flowServiciosEscolares, FlowOfertaEducativa, flowFisio]);
+}, [flowSalir5,FlowServiciosCoyotes, flowServiciosEscolares, FlowOfertaEducativa, flowFisio]);
 
 // Resto del código...
 
